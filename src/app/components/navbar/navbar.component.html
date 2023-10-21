@@ -1,0 +1,29 @@
+<nav class="navbar navbar-dark bg-dark" style="background-color: #386898; color: #ffffff;">
+  <div class="d-flex">
+    <div class="container-fluid ">
+      <span class="navbar-brand mb-0 h1" style="font-size: 24px;">Shopping</span>
+    </div>
+    <div id="navbarNavDropdown" class=" d-flex">
+      <div class=" d-flex">
+        <div class="nav-item">
+          <a class="nav-link active"   
+            aria-current="page"
+            href="#"
+            routerLink="/home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            style="color: #ffffff; text-decoration: none;">Home</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" routerLink="/cart" style="color: #ffffff; text-decoration: none;">Cart{{ getcount() > 0 ? getcount() : "" }}</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" routerLink="/orders" style="color: #ffffff; text-decoration: none;">Orders</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-outline-danger" (click)="logout()" style="color: #ffffff; border-color: #ffffff;">Logout</button>
+  </div>
+</nav>

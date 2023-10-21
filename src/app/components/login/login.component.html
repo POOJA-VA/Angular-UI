@@ -1,0 +1,65 @@
+<main class="form-signin w-50 my-5 m-auto">
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+  <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="name@example.com"
+        name="email"
+        ngModel
+        required
+        email
+        #modelEmail="ngModel"
+        [ngClass]="modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''"
+      />
+      <label for="email">Email Address</label>
+      <div
+        *ngIf="modelEmail.invalid && modelEmail.dirty"
+        class="invalid-feedback"
+      >
+        Please enter a valid email address
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        name="password"
+        ngModel
+        required
+        #modelPassword="ngModel"
+        [ngClass]="
+          modelPassword.invalid && modelPassword.dirty ? 'is-invalid' : ''
+        "
+      />
+      <label for="password">Password</label>
+      <div
+        *ngIf="modelPassword.invalid && modelPassword.dirty"
+        class="invalid-feedback"
+      >
+        Please enter atleast 8 charcter and @
+      </div>
+    </div>
+
+    <p *ngIf="error.length > 0" class="text-danger">{{error}}</p>
+
+    <div>
+      <p>Not an user? <a href="/register">Sign Up</a></p>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary w-100 py-2"
+      name="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </form>
+</main>

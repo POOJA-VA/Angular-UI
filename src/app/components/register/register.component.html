@@ -1,0 +1,111 @@
+<main class="form-signin w-50 my-5 m-auto">
+  <h1 class="h3 mb-3 fw-normal">Please Sign up</h1>
+
+  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="name@example.com"
+        ngModel
+        required
+        email
+        #modelEmail="ngModel"
+        [ngClass]="modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''"
+      />
+      <label for="email">Email address</label>
+      <div
+        *ngIf="modelEmail.invalid && modelEmail.dirty"
+        class="invalid-feedback"
+      >
+        Please enter a valid email address
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="name"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Enter Name"
+        ngModel
+        required
+        #modelName="ngModel"
+        [ngClass]="modelName.invalid && modelName.dirty ? 'is-invalid' : ''"
+      />
+      <label for="name">Enter Name</label>
+      <div
+        *ngIf="modelName.invalid && modelName.dirty"
+        class="invalid-feedback"
+      >
+        Please enter your name
+      </div>
+    </div>
+
+    <div class="form-outline mb-3">
+      <label class="form-label" for="form3Example4cg">Password</label>
+
+      <input
+        type="password"
+        id="form3Example4cg"
+        class="form-control form-control-lg"
+        name="password"
+        minlength="8"
+        ngModel
+        required
+        #modelPass="ngModel"
+        [ngClass]="modelPass.invalid && modelPass.dirty ? 'is-invalid' : ''"
+      />
+    </div>
+
+    <div class="form-outline mb-3">
+      <label class="form-label" for="form3Example4cdg">Confirm password</label>
+
+      <input
+        type="password"
+        id="form3Example4cdg"
+        class="form-control form-control-lg"
+        name="cPassword"
+        
+        minlength="8"
+        ngModel
+        required
+        #modelCPass="ngModel"
+        [ngClass]="modelCPass.invalid && modelCPass.dirty ? 'is-invalid' : ''"
+      />
+
+      <div
+        *ngIf="
+
+              modelCPass.dirty && modelCPass.errors?.['required'] "
+      >
+        Confirm Password is required
+      </div>
+
+      <div
+        *ngIf="modelPass.value !== modelCPass.value"
+        class="invalid-feedback text-danger"
+      >
+        Passwords Doesn't Match!!! Please Check Password
+      </div>
+    </div>
+
+    <p *ngIf="error.length > 0" class="text-danger">{{ error }}</p>
+
+    <div>
+      <p>Already an user? <a href="/login">Sign In</a></p>
+    </div>
+
+    <button
+      class="btn btn-primary w-100 py-2"
+      type="submit"
+      name="submit"
+      [disabled]="registerForm.invalid || modelPass.value !== modelCPass.value"
+    >
+      Register
+    </button>
+  </form>
+</main>
